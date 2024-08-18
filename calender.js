@@ -2,7 +2,7 @@ const date = new Date;
 const N = 12;
 const arr = Array.from(Array(N), (_, index) => index + 1);
 const month_arr = {1:"January", 2:"February", 3:"March", 4:"April", 5:"May", 6:"June", 7:"July", 8:"August", 9:"September", 10:"October", 11:"November", 12:"December"};
-let space = "    " ;
+let space = "   " ;
 
 if (process.argv[2] === '-m' && arr.find((number) => number === Number(process.argv[3]))){
   day_first = new Date(date.getFullYear(), process.argv[3] - 1,1);
@@ -27,17 +27,9 @@ console.log('Su Mo Tu We Th Fr Sa');
 process.stdout.write(space);
 
 for (let i = 1; i <= day_last.getDate(); i++){
-  if (i < 10 && i !== 9){
-    process.stdout.write(String(i) + "  ");
-  } else {
-    process.stdout.write(String(i) + " ");
-  }
+  process.stdout.write(String(i).padStart(2) + ' ');
 
   if ((day_first.getDay() + i) % 7 === 0){
-    if (i < 10){
-      process.stdout.write('\n' + " ");
-    } else {
-      process.stdout.write('\n');
-    }
+    process.stdout.write('\n');
   }
 }
